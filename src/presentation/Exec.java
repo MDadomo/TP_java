@@ -11,6 +11,6 @@ public class Exec {
 	public static void main(String[] args) throws SQLException {
 	Combat main = new Combat();
 	List l1 = main.creationVille();
-	Villes player1 = main.SelectionJ1(l1);
+	List player1 = main.SelectionJ1(l1);
 }
 }
