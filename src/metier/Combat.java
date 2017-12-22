@@ -145,6 +145,45 @@ public class Combat {
                 }
             } else {
                 // nbre impair
+                Villes villeUn = l.get(i);
+                Villes villeDeux = l.get(i+1);
+                Villes villeTrois = l.get(i+2);
+                Villes gagnantImpere = tourImpere(villeUn, villeDeux, villeTrois);
+                if (gagnantImpere == villeUn) {
+                    l.remove(i+1);
+                    l.remove(i+2);
+                }else if(gagnantImpere == villeDeux){
+                    l.remove(i+2);
+                    l.remove(i);
+                }
+                else if(gagnantImpere == villeTrois){
+                    l.remove(i+1);
+                    l.remove(i);
+                }
+                int nombreGagnants = l.size()/2;
+                for (i = 0; i <=500000;i++){
+                    if(l.size() == nombreGagnants){
+                        i = 0;
+                        nombreGagnants = l.size()/2;
+                    }
+                    else if(l.size() == 1){
+                        String gagnant = (l.get(0).getNom_ville());
+                        return gagnant;
+                    }
+                    if(l.size() > 1){
+                        Villes villeUn = l.get(i);
+                        Villes villeDeux = l.get(i+1);
+                        Villes perdantMatch = tour(villeUn, villeDeux);
+                        if (perdantMatch == villeUn) {
+                            l.remove(i);
+                        }else if(perdantMatch == villeDeux){
+                            l.remove(i+1);
+                        }
+
+                    }
+
+                }
+
             }
 
         }
@@ -168,6 +207,27 @@ public class Combat {
 	    }
         else{
         	return null;
+        }
+
+    }
+
+    public Villes tourImpere (Villes ville1, Villes ville2, Villes ville3) {
+
+        double pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random()*100) / ville1.getNom_ville().length();
+        double pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random()*100) / ville2.getNom_ville().length();
+        double pointVille3 = (ville3.getNb_habitant() * ville3.getLatitude() * Math.random()*100) / ville3.getNom_ville().length();
+
+        if(pointVille1 < pointVille2 && pointVille3 < pointVille2){
+            return ville2;
+        }
+        else if(pointVille1 > pointVille2 && pointVille1 > pointVille3){
+            return ville1;
+        }
+        else if(pointVille3 > pointVille2 && pointVille1 < pointVille3){
+            return ville3;
+        }
+        else{
+            return null;
         }
 
     }
