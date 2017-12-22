@@ -1,5 +1,6 @@
 package metier;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class Combat {
         Villes villeSix = new Villes(21, 434000, 3803 , 44 ,"St Bernad", 2);
         Villes villeSept = new Villes(54, 40050, 3039 , 44 ,"St luce", 2);
         Villes villeHuit = new Villes(6, 40020, 3039 , 44 ,"St Loire", 2);
+        Villes villeNeuf = new Villes(7, 408600, 3303 , 44 ,"St machin", 2);
 
         List v = new LinkedList();
 
@@ -27,13 +29,14 @@ public class Combat {
         v.add(villeSix);
         v.add(villeSept);
         v.add(villeHuit);
+        v.add(villeNeuf);
 
         return v;
 	}
 public Villes SelectionJ1(List<Villes> l) {
 		
 		
-		System.out.println("Selectionnez votre département : \n");
+		System.out.println("Selectionnez votre département :");
 		Scanner dpt = new Scanner(System.in);
 		int dp = dpt.nextInt();
 		System.out.println("Selectionnez votre arrondissement : \n");
@@ -42,20 +45,21 @@ public Villes SelectionJ1(List<Villes> l) {
 		System.out.println("Selectionnez votre canton : \n");
 		Scanner can = new Scanner(System.in);
 		int ct = can.nextInt();
-		if(Villes.getCanton() == ct && Villes.getNom_departement() == dp && Villes.getNom_arrondissement() == ar){
-			for (Villes ville : l){
-				ville.affiche();
+		System.out.println("Voici les villes du canton choisi: \n");
+		for (Villes ville : l){		
+			if(ville.getCanton() == ct && ville.getNom_departement() == dp && ville.getNom_arrondissement() == ar){
+				ville.affiche();		
 			}
-			System.out.println("Selectionnez votre ville : \n");
-			Scanner ville = new Scanner(System.in);
-			int v = ville.nextInt();
-			Villes vj1 = l.get(v);
-			vj1.afficheFinal();
-			
-			return vj1;
 		}
 		
-	}
+		System.out.println("Selectionnez votre ville : \n");
+		Scanner vl = new Scanner(System.in);
+		int v = vl.nextInt();
+		Villes vj1 = l.get(v);
+		vj1.afficheFinal();
+		
+		return vj1;
+}
 
 }
 
