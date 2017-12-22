@@ -46,9 +46,9 @@ public class Combat {
         Villes villeSix = new Villes(21, 434000, 3803 , 44 ,"St Bernad", 2);
         Villes villeSept = new Villes(54, 40050, 3039 , 44 ,"St luce", 2);
         Villes villeHuit = new Villes(6, 40020, 3039 , 44 ,"St Loire", 2);
-        Villes villeNeuf = new Villes(7, 40600, 3303 , 44 ,"St machin", 2);
-        Villes ville10 = new Villes(7, 40600, 3303 , 44 ,"St truc", 2);
-        Villes ville11 = new Villes(7, 40600, 3303 , 44 ,"St nathan", 2);
+        Villes villeNeuf = new Villes(7, 470600, 3303 , 44 ,"St machin", 2);
+        Villes ville10 = new Villes(7, 406700, 3303 , 44 ,"St truc", 2);
+        Villes ville11 = new Villes(7, 406070, 3303 , 44 ,"St nathan", 2);
 
         List v = new LinkedList();
 
