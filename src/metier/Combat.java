@@ -4,10 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import entities.Vainqueur;
 import entities.Villes;
 
 public class Combat {
 	public List creationVille(){
+
+	    //Recuperer toutes les villes d'un canton depuis la bdd puis les ajouter à la liste
 
 	    Villes villeOne = new Villes(1, 2000, 4083 , 44 ,"Nantes", 3);
         Villes villeDeux = new Villes(3, 40300, 3703 , 44 ,"St Sebastien sur loire", 2);
@@ -33,7 +36,7 @@ public class Combat {
 
         return v;
 	}
-public Villes SelectionJ1(List<Villes> l) {
+    public Villes SelectionJ1(List<Villes> l) {
 		
 		
 		System.out.println("Selectionnez votre département :");
@@ -60,6 +63,15 @@ public Villes SelectionJ1(List<Villes> l) {
 		
 		return vj1;
 }
+
+	public Vainqueur combatVilles(List<Villes> v, Villes vj1){
+
+	    
+
+
+	    return null;
+    }
+
 
 }
 
