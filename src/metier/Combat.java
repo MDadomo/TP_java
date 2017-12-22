@@ -111,6 +111,7 @@ public class Combat {
                         String gagnant = (l.get(0).getNom_ville());
                         return gagnant;
                     }
+                    if(l.size() > 1){
                     Villes villeUn = l.get(i);
                     Villes villeDeux = l.get(i+1);
                     Villes perdantMatch = tour(villeUn, villeDeux);
@@ -119,6 +120,9 @@ public class Combat {
                     }else if(perdantMatch == villeDeux){
                         l.remove(i+1);
                     }
+                    
+                    }
+                    
                 }
             } else {
                 // nbre impair
