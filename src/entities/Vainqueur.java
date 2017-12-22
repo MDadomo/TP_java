@@ -1,6 +1,6 @@
 package entities;
 
-public class Vainqueur {
+public class Vainqueur extends Villes{
 	private Villes vainqueur;
 
 	public Villes getVainqueur() {

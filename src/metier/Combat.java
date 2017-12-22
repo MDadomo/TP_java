@@ -46,7 +46,9 @@ public class Combat {
         Villes villeSix = new Villes(21, 434000, 3803 , 44 ,"St Bernad", 2);
         Villes villeSept = new Villes(54, 40050, 3039 , 44 ,"St luce", 2);
         Villes villeHuit = new Villes(6, 40020, 3039 , 44 ,"St Loire", 2);
-        Villes villeNeuf = new Villes(7, 408600, 3303 , 44 ,"St machin", 2);
+        Villes villeNeuf = new Villes(7, 40600, 3303 , 44 ,"St machin", 2);
+        Villes ville10 = new Villes(7, 40600, 3303 , 44 ,"St truc", 2);
+        Villes ville11 = new Villes(7, 40600, 3303 , 44 ,"St nathan", 2);
 
         List v = new LinkedList();
 
@@ -59,6 +61,8 @@ public class Combat {
         v.add(villeSept);
         v.add(villeHuit);
         v.add(villeNeuf);
+        v.add(ville10);
+        v.add(ville11);
 
         return v;
 	}
@@ -86,39 +90,27 @@ public class Combat {
 		return r;
 }
 
-	public Villes tour (Villes ville1, Villes ville2) {
+	
 
-	    int pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random()*100) / ville1.getNom_ville().length;
-	    int pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random()*100) / ville2.getNom_ville().length;
-
-	    if(pointVille1 < pointVille2){
-	        return ville1;
-
-
-        }else if{
-	        return ville2;
-	    }
-
-    }
-
-	public Vainqueur combatVilles(List<Villes> l){
+	public String combatVilles(List<Villes> l){
 
         int i = 0;
-        int j = 0;
+        int j = l.size();
         Vainqueur vainqueur = null;
-	    while(gagnant == null) {
+	    while(vainqueur == null) {
 
             if ( (j % 2) == 0) {
                 // nbre pair
-                int nombreGagnants = l.length()/2;
+                int nombreGagnants = l.size()/2;
                 for (Villes ville : l){
-                    if(l.length == nombreGagnants){
+                    if(l.size() == nombreGagnants){
                         i = 0;
-                        nombreGagnants = l.lenght/2;
+                        nombreGagnants = l.size()/2;
+                        System.out.println("Il y a un un autre tour");
                     }
-                    if(l.length == 1){
-                        vainqueur = new Vainqueur(ville);
-                        return vainqueur;
+                    else if(l.size() == 1){
+                        String gagnant = (l.get(0).getNom_ville());
+                        return gagnant;
                     }
                     Villes villeUn = l.get(i);
                     Villes villeDeux = l.get(i+1);
@@ -128,15 +120,42 @@ public class Combat {
                     }else if(perdantMatch == villeDeux){
                         l.remove(i+1);
                     }
+                    i++;
                 }
             } else {
                 // nbre impair
             }
 
         }
+	    
+	    return "il n'y a pas de vainqueur" ;
 
 
     }
+	
+	public Villes tour (Villes ville1, Villes ville2) {
+
+	    double pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random()*100) / ville1.getNom_ville().length();
+	    double pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random()*100) / ville2.getNom_ville().length();
+        System.out.println("Il y a un tour");
+	    if(pointVille1 < pointVille2){
+	        System.out.println("ville1 perd");
+	        return ville1;
+
+	    }
+        else if(pointVille1 > pointVille2){
+	        System.out.println("ville2 perd");
+	        return ville2;
+	    }
+        else{
+        	return null;
+        }
+
+    }
+	
+	public void finCombat(Vainqueur g){
+		System.out.println("La ville qui gagne dans ce canton est : " + g.getNom_ville()+".");
+	}
 
 
 
