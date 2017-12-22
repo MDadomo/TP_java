@@ -24,7 +24,9 @@ public class Match {
 		setVille(ville);
 		setAdversaire(adversaire);
 	}
-	
+
+
+
 }
 
 
