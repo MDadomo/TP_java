@@ -2,7 +2,9 @@ package metier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,33 +14,51 @@ import entities.Villes;
 
 public class Combat {
 	
-	public void connection(){
+
+	
+	
+	
+	public List creationVille() throws SQLException{
+
 		// Enregistrement en BDD
-				// chargement du pilote
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					System.out.println("Impossible de charger le pilote ");
-				}
+        // chargement du pilote
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Impossible de charger le pilote ");
+        }
 
-				// connection a la base de données
-				Connection con = null;
-				try {
-					String DBurl = "jdbc:mysql://localhost:3306/gestionnaire?autoReconnect=true&useSSL=false";
-					con = DriverManager.getConnection(DBurl, "root", "");
-				} catch (SQLException e) {
-					System.out.println("Connection à la base de données impossible");
-				}
-	}
-	
-	
-	
-	
-	public List creationVille(){
+        // connection a la base de données
+        Connection con = null;
+        try {
+            String DBurl = "jdbc:mysql://localhost:3306/tpjava?autoReconnect=true&useSSL=false";
+            con = DriverManager.getConnection(DBurl, "root", "");
+        } catch (SQLException e) {
+            System.out.println("Connection à la base de données impossible");
+        }
+    
+        String requete = "SELECT * FROM villes";
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(requete);
+        } catch (SQLException e) {
+            System.out.println("Anomalie lors de l'execution de la requête");
+        }
 
-	    //Recuperer toutes les villes d'un canton depuis la bdd puis les ajouter à la liste
+        // parcours des données retournées
+        	List<Villes> l = new LinkedList<Villes>();
+        	while (rs.next()) {
+    			Villes m = new Villes(rs.getInt("ville_canton"), rs.getInt("ville_population_2012"), rs.getInt("ville_latitude_deg"), rs.getInt("ville_departement"), rs.getString("ville_nom_reel"), rs.getInt("ville_arrondissement"));
+    			l.add(m);
+            }
+ 
 
-	    Villes villeOne = new Villes(1, 2000, 4083 , 44 ,"Nantes", 3);
+        // fermeture de la connection
+        con.close();
+
+	   /* Villes villeOne = new Villes(1, 2000, 4083 , 44 ,"Nantes", 3);
         Villes villeDeux = new Villes(3, 40300, 3703 , 44 ,"St Sebastien sur loire", 2);
         Villes villeTrois = new Villes(2, 4600, 3053 , 85 ,"Les Sables D'olonnes", 2);
         Villes villeQuatre = new Villes(5, 47650, 303 , 66 ,"Nice", 2);
@@ -62,9 +82,9 @@ public class Combat {
         v.add(villeHuit);
         v.add(villeNeuf);
         v.add(ville10);
-        v.add(ville11);
+        v.add(ville11);*/
 
-        return v;
+        return l;
 	}
     public List SelectionJ1(List<Villes> l) {
 		
