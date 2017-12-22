@@ -46,18 +46,18 @@ public class Combat {
 		Scanner can = new Scanner(System.in);
 		int ct = can.nextInt();
 		if(Villes.getCanton() == ct && Villes.getNom_departement() == dp && Villes.getNom_arrondissement() == ar){
+			for (Villes ville : l){
+				ville.affiche();
+			}
+			System.out.println("Selectionnez votre ville : \n");
+			Scanner ville = new Scanner(System.in);
+			int v = ville.nextInt();
+			Villes vj1 = l.get(v);
+			vj1.afficheFinal();
 			
+			return vj1;
 		}
 		
-		/*for (Monster Monster : l){
-			Monster.affiche();
-		}
-		Scanner scJ1 = new Scanner(System.in);
-		int sj1 = scJ1.nextInt();
-		Monster characterJ1 = l.get(sj1 -1);
-		characterJ1.afficheFinal();
-		
-		return characterJ1;*/
 	}
 
 	public Vainqueur combatVilles(List<Villes> v, Villes vj1){
