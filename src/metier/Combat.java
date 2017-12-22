@@ -4,10 +4,13 @@ import entities.Villes;
 import java.util.List;
 import java.util.Scanner;
 
-import entities.Villes;
-
-
 public class Combat {
+	public List creationVille(){
+
+	    Villes villeOne = new Villes(1, 2000, 403 , 44 ,"Nantes", 3);
+
+	    return null;
+	}
 public Villes SelectionJ1(List<Villes> l) {
 		
 		
@@ -34,12 +37,7 @@ public Villes SelectionJ1(List<Villes> l) {
 		
 		return characterJ1;*/
 	}
-public List creationVille(){
 
-    Villes villeOne = new Villes(1, 2000, 403 , 44 ,"Nantes", 3);
-
-    return null;
-}
 }
 
 
