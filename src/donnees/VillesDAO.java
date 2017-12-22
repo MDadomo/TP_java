@@ -1,5 +1,1 @@
-package donnees;
-
-public class VillesDAO {
-
-}
+package donnees;public class VillesDAO {}
