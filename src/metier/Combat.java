@@ -60,13 +60,59 @@ public class Combat {
 		
 	}
 
-	public Vainqueur combatVilles(List<Villes> v, Villes vj1){
+	public Villes tour (Villes ville1, Villes ville2) {
 
-	    
+	    int pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random()*100) / ville1.getNom_ville().length;
+	    int pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random()*100) / ville2.getNom_ville().length;
+
+	    if(pointVille1 < pointVille2){
+	        return ville1;
 
 
-	    return null;
+        }else if{
+	        return ville2;
+	    }
+
     }
+
+	public Vainqueur combatVilles(List<Villes> l){
+
+        int i = 0;
+        int j = 0;
+        Vainqueur vainqueur = null;
+	    while(gagnant == null) {
+
+            if ( (j % 2) == 0) {
+                // nbre pair
+                int nombreGagnants = l.length()/2;
+                for (Villes ville : l){
+                    if(l.length == nombreGagnants){
+                        i = 0;
+                        nombreGagnants = l.lenght/2;
+                    }
+                    if(l.length == 1){
+                        vainqueur = new Vainqueur(ville);
+                        return vainqueur;
+                    }
+                    Villes villeUn = l.get(i);
+                    Villes villeDeux = l.get(i+1);
+                    Villes perdantMatch = tour(villeUn, villeDeux);
+                    if (perdantMatch == villeUn) {
+                        l.remove(i);
+                    }else if(perdantMatch == villeDeux){
+                        l.remove(i+1);
+                    }
+                }
+            } else {
+                // nbre impair
+            }
+
+        }
+
+
+    }
+
+
 
 
 }
