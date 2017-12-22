@@ -98,11 +98,10 @@ public class Combat {
         int j = l.size();
         Vainqueur vainqueur = null;
 	    while(vainqueur == null) {
-
             if ( (j % 2) == 0) {
                 // nbre pair
                 int nombreGagnants = l.size()/2;
-                for (Villes ville : l){
+                for (i = 0; i <=500000;i++){
                     if(l.size() == nombreGagnants){
                         i = 0;
                         nombreGagnants = l.size()/2;
@@ -120,7 +119,6 @@ public class Combat {
                     }else if(perdantMatch == villeDeux){
                         l.remove(i+1);
                     }
-                    i++;
                 }
             } else {
                 // nbre impair
