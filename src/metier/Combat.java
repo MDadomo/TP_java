@@ -105,7 +105,6 @@ public class Combat {
                     if(l.size() == nombreGagnants){
                         i = 0;
                         nombreGagnants = l.size()/2;
-                        System.out.println("Il y a un un autre tour");
                     }
                     else if(l.size() == 1){
                         String gagnant = (l.get(0).getNom_ville());
@@ -139,14 +138,12 @@ public class Combat {
 
 	    double pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random()*100) / ville1.getNom_ville().length();
 	    double pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random()*100) / ville2.getNom_ville().length();
-        System.out.println("Il y a un tour");
+
 	    if(pointVille1 < pointVille2){
-	        System.out.println("ville1 perd");
 	        return ville1;
 
 	    }
         else if(pointVille1 > pointVille2){
-	        System.out.println("ville2 perd");
 	        return ville2;
 	    }
         else{

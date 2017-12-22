@@ -13,6 +13,6 @@ public class Exec {
 	List l1 = main.creationVille();
 	List lville = main.SelectionJ1(l1);
 	String gagnantString = main.combatVilles(lville);
-	System.out.println(gagnantString);
+	System.out.println("La ville qui gagne dans ce tournoi est : " + gagnantString + ".");
 }
 }
