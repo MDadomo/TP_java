@@ -1,5 +1,9 @@
 package metier;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,6 +11,29 @@ import entities.Vainqueur;
 import entities.Villes;
 
 public class Combat {
+	
+	public void connection(){
+		// Enregistrement en BDD
+				// chargement du pilote
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("Impossible de charger le pilote ");
+				}
+
+				// connection a la base de données
+				Connection con = null;
+				try {
+					String DBurl = "jdbc:mysql://localhost:3306/gestionnaire?autoReconnect=true&useSSL=false";
+					con = DriverManager.getConnection(DBurl, "root", "");
+				} catch (SQLException e) {
+					System.out.println("Connection à la base de données impossible");
+				}
+	}
+	
+	
+	
+	
 	public List creationVille(){
 
 	    //Recuperer toutes les villes d'un canton depuis la bdd puis les ajouter à la liste
@@ -19,6 +46,7 @@ public class Combat {
         Villes villeSix = new Villes(21, 434000, 3803 , 44 ,"St Bernad", 2);
         Villes villeSept = new Villes(54, 40050, 3039 , 44 ,"St luce", 2);
         Villes villeHuit = new Villes(6, 40020, 3039 , 44 ,"St Loire", 2);
+        Villes villeNeuf = new Villes(7, 408600, 3303 , 44 ,"St machin", 2);
 
         List v = new LinkedList();
 
@@ -30,13 +58,14 @@ public class Combat {
         v.add(villeSix);
         v.add(villeSept);
         v.add(villeHuit);
+        v.add(villeNeuf);
 
         return v;
 	}
-    public Villes SelectionJ1(List<Villes> l) {
+    public List SelectionJ1(List<Villes> l) {
 		
 		
-		System.out.println("Selectionnez votre département : \n");
+		System.out.println("Selectionnez votre département :");
 		Scanner dpt = new Scanner(System.in);
 		int dp = dpt.nextInt();
 		System.out.println("Selectionnez votre arrondissement : \n");
@@ -45,20 +74,17 @@ public class Combat {
 		System.out.println("Selectionnez votre canton : \n");
 		Scanner can = new Scanner(System.in);
 		int ct = can.nextInt();
-		if(Villes.getCanton() == ct && Villes.getNom_departement() == dp && Villes.getNom_arrondissement() == ar){
-			for (Villes ville : l){
-				ville.affiche();
-			}
-			System.out.println("Selectionnez votre ville : \n");
-			Scanner ville = new Scanner(System.in);
-			int v = ville.nextInt();
-			Villes vj1 = l.get(v);
-			vj1.afficheFinal();
-			
-			return vj1;
-		}
+		System.out.println("Voici les villes du canton choisi: \n");
+		List r = new LinkedList();
 		
-	}
+		for (Villes ville : l){		
+			if(ville.getCanton() == ct && ville.getNom_departement() == dp && ville.getNom_arrondissement() == ar){
+				ville.affiche();
+				r.add(ville);
+			}
+		}
+		return r;
+}
 
 	public Villes tour (Villes ville1, Villes ville2) {
 

@@ -77,7 +77,7 @@ public class Villes {
 
 
     public void affiche(){
-        System.out.println("Nom ville :"+ nom_ville + " - Nombres d'habitants : "+ nb_habitant+ "- Latitude : " + latitude);
+        System.out.println("-- "+ nom_ville + " - Nombres d'habitants : "+ nb_habitant+ " - Latitude : " + latitude);
     }
     public void afficheFinal(){
         System.out.println("Vous avez choisi "+nom_ville+"\n");
