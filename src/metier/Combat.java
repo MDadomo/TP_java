@@ -1,4 +1,5 @@
 package metier;
+import donnees.VillesDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,34 +14,23 @@ import entities.Vainqueur;
 import entities.Villes;
 
 public class Combat {
-
-	
-
-	public List SelectionJ1(List<Villes> l) {
-
-		System.out.println("Selectionnez votre département :");
-		Scanner dpt = new Scanner(System.in);
-		int dp = dpt.nextInt();
-		System.out.println("Selectionnez votre arrondissement : \n");
-		Scanner arr = new Scanner(System.in);
-		int ar = arr.nextInt();
-		System.out.println("Selectionnez votre canton : \n");
-		Scanner can = new Scanner(System.in);
-		int ct = can.nextInt();
-		System.out.println("Voici les villes du canton choisi: \n");
+	public List SelectionJ1(List<Villes> l, int ct, int dp, int ar) {
 		List r = new LinkedList();
-
 		for (Villes ville : l) {
 			if (ville.getCanton() == ct && ville.getNom_departement() == dp && ville.getNom_arrondissement() == ar) {
 				ville.affiche();
 				r.add(ville);
 			}
 		}
+		if (r.size() == 0){
+			System.out.println("Aucune ville ne correspond à la recherche");
+			System.exit(0);
+		}
+		
 		return r;
 	}
 
-	public String combatVilles(List<Villes> l) {
-
+	public String combatVilles(List<Villes> l) throws SQLException {
 		int i = 0;
 		int j = l.size();
 		Vainqueur vainqueur = null;
@@ -67,7 +57,6 @@ public class Combat {
 						}
 
 					}
-
 				}
 			} else {
 				// nbre impair
@@ -100,39 +89,33 @@ public class Combat {
 						} else if (perdantMatch == villeDeuxImp) {
 							l.remove(i + 1);
 						}
-
 					}
-
 				}
-
 			}
-
 		}
-
 		return "il n'y a pas de vainqueur";
-
 	}
 
-	public Villes tour(Villes ville1, Villes ville2) {
-
+	public Villes tour(Villes ville1, Villes ville2) throws SQLException {
+		VillesDAO ins = new VillesDAO();
 		double pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random() * 100)
 				/ ville1.getNom_ville().length();
 		double pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random() * 100)
 				/ ville2.getNom_ville().length();
 
 		if (pointVille1 < pointVille2) {
+			ins.insMatchPair(ville1, ville2, ville2);
 			return ville1;
-
 		} else if (pointVille1 > pointVille2) {
+			ins.insMatchPair(ville1, ville2, ville1);
 			return ville2;
 		} else {
 			return null;
 		}
 
 	}
-
-	public Villes tourImpere(Villes ville1, Villes ville2, Villes ville3) {
-
+	public Villes tourImpere(Villes ville1, Villes ville2, Villes ville3) throws SQLException {
+		VillesDAO ins = new VillesDAO();
 		double pointVille1 = (ville1.getNb_habitant() * ville1.getLatitude() * Math.random() * 100)
 				/ ville1.getNom_ville().length();
 		double pointVille2 = (ville2.getNb_habitant() * ville2.getLatitude() * Math.random() * 100)
@@ -141,21 +124,21 @@ public class Combat {
 				/ ville3.getNom_ville().length();
 
 		if (pointVille1 < pointVille2 && pointVille1 < pointVille3) {
+			ins.insMatchImp(ville1, ville2, ville3, ville2, ville3);
 			return ville1;
 		}
 		if (pointVille2 < pointVille1 && pointVille2 < pointVille3) {
+			ins.insMatchImp(ville1, ville2, ville3, ville1, ville3);
 			return ville2;
 		}
 		if (pointVille3 < pointVille2 && pointVille3 < pointVille1) {
+			ins.insMatchImp(ville1, ville2, ville3, ville1, ville2);
 			return ville3;
 		} else {
 			return null;
 		}
-
 	}
-
 	public void finCombat(Vainqueur g) {
 		System.out.println("La ville qui gagne dans ce canton est : " + g.getNom_ville() + ".");
 	}
-
 }
