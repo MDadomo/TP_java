@@ -5,9 +5,9 @@ public class Villes {
     private int canton;
     private int nb_habitant;
     private int latitude;
-    private String nom_departement;
+    private int nom_departement;
     private String nom_ville;
-    private String nom_arrondissement;
+    private int nom_arrondissement;
 
     //Constructeurs
 
@@ -15,7 +15,7 @@ public class Villes {
 
     }
 
-    public Villes(int canton, int nb_habitant, int latitude, String nom_departement, String nom_ville, String nom_arrondissement) {
+    public Villes(int canton, int nb_habitant, int latitude, int nom_departement, String nom_ville, int nom_arrondissement) {
         this.canton = canton;
         this.nb_habitant = nb_habitant;
         this.latitude = latitude;
@@ -51,11 +51,11 @@ public class Villes {
         this.latitude = latitude;
     }
 
-    public String getNom_departement() {
+    public int getNom_departement() {
         return nom_departement;
     }
 
-    public void setNom_departement(String nom_departement) {
+    public void setNom_departement(int nom_departement) {
         this.nom_departement = nom_departement;
     }
 
@@ -67,11 +67,11 @@ public class Villes {
         this.nom_ville = nom_ville;
     }
 
-    public String getNom_arrondissement() {
+    public int getNom_arrondissement() {
         return nom_arrondissement;
     }
 
-    public void setNom_arrondissement(String nom_arrondissement) {
+    public void setNom_arrondissement(int nom_arrondissement) {
         this.nom_arrondissement = nom_arrondissement;
     }
 

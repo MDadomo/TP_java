@@ -7,9 +7,10 @@ public class Combat {
 
     public List creationVille(){
 
-        Villes villeOne = Villes(1, 2000, 403 , "Loire Atlantique","Nantes", "premier");
+        Villes villeOne = Villes(1, 2000, 403 , 44 ,"Nantes", 3);
 
         return null;
     }
+
 
 }
